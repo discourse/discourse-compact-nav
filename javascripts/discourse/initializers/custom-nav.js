@@ -8,6 +8,13 @@ export default apiInitializer("0.8", api => {
     classNameBindings: ["showCompactNav:compact-version"],
     showCompactVersion: alias("showCompactNav"),
     router: service("router"),
+    isMobile: alias("showMobileVersion"),
+
+    @discourseComputed("site.isMobileDevice")
+    showMobileVersion(isMobile) {
+      console.log(isMobile)
+      return isMobile;
+    },
 
     @discourseComputed("site.isMobileDevice", "router.currentRouteName")
     showCompactNav(isMobile, routeName) {
