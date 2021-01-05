@@ -2,7 +2,11 @@
   position: relative;
 }
 
-.list-controls .nav-pills.compact-version > li {
+.list-controls .nav.nav-pills.compact-version li.navigation-toggle {
+  margin-right: 1em;
+}
+
+.list-controls .nav-pills.compact-version > li:not(.external) {
   margin-right: 0;
   font-size: .8706em;
   border: 1px solid var(--primary-medium);
