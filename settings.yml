@@ -10,3 +10,7 @@ on_category_pages:
   type: bool
   default: false
   description: "Show minimal nav on category pages"
+nav_items_to_exclude:
+  type: list
+  default: ""
+  description: "A list of nav item names to exclude from the 'compact' nav, and keep in the nav pills list."

@@ -6,16 +6,38 @@
       {{d-icon (if expanded "caret-down" "caret-right")}}
     </a>
   </li>
-  {{#if expanded}}
-    <ul class="drop">
-      {{#each navItems as |navItem|}}
-        {{navigation-item content=navItem filterMode=filterMode category=category}}
-      {{/each}}
-      {{#each connectors as |c|}}
-        {{plugin-connector connector=c class=c.classNames tagName="li" args=(hash category=category filterMode=filterMode)}}
-      {{/each}}
-    </ul>
+  {{#if isMobile}}
+    {{#if expanded}}
+      <ul class="drop">
+        {{#each navItems as |navItem|}}
+          {{navigation-item content=navItem filterMode=filterMode category=category}}
+        {{/each}}
+        {{#each connectors as |c|}}
+          {{plugin-connector connector=c class=c.classNames tagName="li" args=(hash category=category filterMode=filterMode)}}
+        {{/each}}
+      </ul>
+    {{/if}}
+  {{else}}
+    {{#if expanded}}
+      <ul class="drop">
+        {{#each navItems as |navItem|}}
+          {{#if (shouldBeInternal navItem selectedNavItem.displayName)}}
+            {{navigation-item content=navItem filterMode=filterMode category=category}}
+          {{/if}}
+        {{/each}}
+        {{#each connectors as |c|}}
+          {{plugin-connector connector=c class=c.classNames tagName="li" args=(hash category=category filterMode=filterMode)}}
+        {{/each}}
+      </ul>
+    {{/if}}
+
+    {{#each navItems as |navItem|}}
+      {{#if (shouldBeExternal navItem selectedNavItem.displayName)}}
+        {{navigation-item content=navItem filterMode=filterMode category=category classNames="external"}}
+      {{/if}}
+    {{/each}}
   {{/if}}
+
 {{else}}
 
   {{!-- Default/Desktop Version --}}
