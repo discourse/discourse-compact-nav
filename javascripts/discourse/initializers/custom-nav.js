@@ -12,37 +12,26 @@ export default apiInitializer("0.8", api => {
 
     @discourseComputed("site.isMobileDevice")
     showMobileVersion(isMobile) {
-      console.log(isMobile)
       return isMobile;
     },
 
-    @discourseComputed("site.isMobileDevice", "router.currentRouteName")
-    showCompactNav(isMobile, routeName) {
+    @discourseComputed("site.isMobileDevice", "router.currentRouteName", "router.currentURL")
+    showCompactNav(isMobile, routeName, currentURL) {
+
+      console.log(currentURL);
 
       let showOnHome = settings.on_home_page;
       let showOnTag = settings.on_tag_pages;
       let showOnCategory = settings.on_category_pages;
 
-      let isTagPage = showOnTag === true &&
-        routeName.split(".")[0] === "tag" || 
+      let isTagPage = routeName.split(".")[0] === "tag" || 
         routeName.split(".")[0] === "tags";
 
-      let isHomePage = showOnHome === true &&
-        routeName === "discovery.latest" || 
-        routeName === "discovery.top" ||
-        routeName === "discovery.topAll" ||
-        routeName === "discovery.topYearly" ||
-        routeName === "discovery.topQuarterly" ||
-        routeName === "discovery.topMonthly" ||
-        routeName === "discovery.topWeekly" ||
-        routeName === "discovery.topDaily" ||
-        routeName === "discovery.unread" ||
-        routeName === "discovery.new";
+      let isHomePage = currentURL === "/";
 
-      let isCategoryPage = showOnCategory === true &&
-        routeName === "discovery.category" ||
+      let isCategoryPage = routeName === "discovery.category" ||
         routeName === "discovery.latestCategory" ||
-        routeName === "discovery.categories" ||
+        routeName === "discovery.categories";
         routeName === "discovery.topCategory" ||
         routeName === "discovery.topAllCategory" ||
         routeName === "discovery.topYearlyCategory" ||
@@ -52,8 +41,12 @@ export default apiInitializer("0.8", api => {
         routeName === "discovery.topDailyCategory" ||
         routeName === "discovery.categoryAll" ||
         routeName === "discovery.categoryNone";
-      
-      return isMobile || isTagPage || isHomePage || isCategoryPage;
+
+      let renderOnTagePage = showOnTag === true && isTagPage === true;
+      let renderOnHomePage = showOnHome === true && isHomePage === true;
+      let renderOnCategoryPage = showOnCategory === true && isCategoryPage === true;
+            
+      return isMobile || renderOnTagePage || renderOnHomePage || renderOnCategoryPage;
     }
   });
 });
