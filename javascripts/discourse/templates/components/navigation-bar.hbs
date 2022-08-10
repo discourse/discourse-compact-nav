@@ -1,18 +1,28 @@
 {{#if showCompactVersion}}
-  {{!-- Custom/Mobile Version --}}
+  {{! Custom/Mobile Version }}
   <li class="navigation-toggle">
     <a href {{action "toggleDrop"}} class="toggle-link">
       {{selectedNavItem.displayName}}
-      {{d-icon (if expanded "caret-down" "caret-right")}}
+      {{d-icon
+        (if expanded (theme-setting "open_icon") (theme-setting "closed_icon"))
+      }}
     </a>
   </li>
   {{#if isMobile}}
     {{#if expanded}}
       <ul class="drop">
         {{#each navItems as |navItem|}}
-          {{navigation-item content=navItem filterMode=filterMode category=category}}
+          {{navigation-item
+            content=navItem
+            filterMode=filterMode
+            category=category
+          }}
         {{/each}}
-        {{plugin-outlet name="extra-nav-item" connectorTagName="li" args=(hash category=category filterMode=filterMode)}}
+        {{plugin-outlet
+          name="extra-nav-item"
+          connectorTagName="li"
+          args=(hash category=category filterMode=filterMode)
+        }}
       </ul>
     {{/if}}
   {{else}}
@@ -20,27 +30,44 @@
       <ul class="drop">
         {{#each navItems as |navItem|}}
           {{#if (shouldBeInternal navItem selectedNavItem.displayName)}}
-            {{navigation-item content=navItem filterMode=filterMode category=category}}
+            {{navigation-item
+              content=navItem
+              filterMode=filterMode
+              category=category
+            }}
           {{/if}}
         {{/each}}
-        {{plugin-outlet name="extra-nav-item" connectorTagName="li" args=(hash category=category filterMode=filterMode)}}
+        {{plugin-outlet
+          name="extra-nav-item"
+          connectorTagName="li"
+          args=(hash category=category filterMode=filterMode)
+        }}
       </ul>
     {{/if}}
 
     {{#each navItems as |navItem|}}
       {{#if (shouldBeExternal navItem selectedNavItem.displayName)}}
-        {{navigation-item content=navItem filterMode=filterMode category=category classNames="external"}}
+        {{navigation-item
+          content=navItem
+          filterMode=filterMode
+          category=category
+          classNames="external"
+        }}
       {{/if}}
     {{/each}}
   {{/if}}
 
 {{else}}
 
-  {{!-- Default/Desktop Version --}}
+  {{! Default/Desktop Version }}
   {{#each navItems as |navItem|}}
     {{navigation-item content=navItem filterMode=filterMode category=category}}
   {{/each}}
   {{custom-html name="extraNavItem" tagName="li"}}
-  {{!- this is done to avoid DIV in the UL, originally {{plugin-outlet name="extra-nav-item"}}
-  {{plugin-outlet name="extra-nav-item" connectorTagName="li" args=(hash category=category filterMode=filterMode)}}
+  {{! this is done to avoid DIV in the UL, originally {{plugin-outlet name="extra-nav-item"}}
+  {{plugin-outlet
+    name="extra-nav-item"
+    connectorTagName="li"
+    args=(hash category=category filterMode=filterMode)
+  }}
 {{/if}}
