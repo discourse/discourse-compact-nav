@@ -1,3 +1,7 @@
+everywhere:
+  type: bool
+  default: false
+  description: "Show minimal nav all the time (overrides home_page/tag_pages/category_pages settings)"
 on_home_page:
   type: bool
   default: false
