@@ -17,6 +17,9 @@ export default apiInitializer("0.8", api => {
 
     @discourseComputed("site.isMobileDevice", "router.currentRouteName", "router.currentURL")
     showCompactNav(isMobile, routeName, currentURL) {
+      if(settings.everywhere){
+        return true;
+      }
 
       let showOnHome = settings.on_home_page;
       let showOnTag = settings.on_tag_pages;
