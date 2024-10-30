@@ -29,7 +29,7 @@
     {{#if expanded}}
       <ul class="drop">
         {{#each navItems as |navItem|}}
-          {{#if (shouldBeInternal navItem selectedNavItem.displayName)}}
+          {{#if (should-be-internal navItem selectedNavItem.displayName)}}
             {{navigation-item
               content=navItem
               filterMode=filterMode
@@ -46,7 +46,7 @@
     {{/if}}
 
     {{#each navItems as |navItem|}}
-      {{#if (shouldBeExternal navItem selectedNavItem.displayName)}}
+      {{#if (should-be-external navItem selectedNavItem.displayName)}}
         {{navigation-item
           content=navItem
           filterMode=filterMode
