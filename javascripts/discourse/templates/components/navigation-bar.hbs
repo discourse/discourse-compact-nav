@@ -1,56 +1,60 @@
-{{#if showCompactVersion}}
+{{#if this.showCompactVersion}}
   {{! Custom/Mobile Version }}
   <li class="navigation-toggle">
     <a href {{action "toggleDrop"}} class="toggle-link">
-      {{selectedNavItem.displayName}}
+      {{this.selectedNavItem.displayName}}
       {{d-icon
-        (if expanded (theme-setting "open_icon") (theme-setting "closed_icon"))
+        (if
+          this.expanded
+          (theme-setting "open_icon")
+          (theme-setting "closed_icon")
+        )
       }}
     </a>
   </li>
-  {{#if isMobile}}
-    {{#if expanded}}
+  {{#if this.isMobile}}
+    {{#if this.expanded}}
       <ul class="drop">
-        {{#each navItems as |navItem|}}
+        {{#each this.navItems as |navItem|}}
           {{navigation-item
             content=navItem
-            filterMode=filterMode
-            category=category
+            filterMode=this.filterMode
+            category=this.category
           }}
         {{/each}}
         {{plugin-outlet
           name="extra-nav-item"
           connectorTagName="li"
-          args=(hash category=category filterMode=filterMode)
+          args=(hash category=this.category filterMode=this.filterMode)
         }}
       </ul>
     {{/if}}
   {{else}}
-    {{#if expanded}}
+    {{#if this.expanded}}
       <ul class="drop">
-        {{#each navItems as |navItem|}}
-          {{#if (should-be-internal navItem selectedNavItem.displayName)}}
+        {{#each this.navItems as |navItem|}}
+          {{#if (should-be-internal navItem this.selectedNavItem.displayName)}}
             {{navigation-item
               content=navItem
-              filterMode=filterMode
-              category=category
+              filterMode=this.filterMode
+              category=this.category
             }}
           {{/if}}
         {{/each}}
         {{plugin-outlet
           name="extra-nav-item"
           connectorTagName="li"
-          args=(hash category=category filterMode=filterMode)
+          args=(hash category=this.category filterMode=this.filterMode)
         }}
       </ul>
     {{/if}}
 
-    {{#each navItems as |navItem|}}
-      {{#if (should-be-external navItem selectedNavItem.displayName)}}
+    {{#each this.navItems as |navItem|}}
+      {{#if (should-be-external navItem this.selectedNavItem.displayName)}}
         {{navigation-item
           content=navItem
-          filterMode=filterMode
-          category=category
+          filterMode=this.filterMode
+          category=this.category
           classNames="external"
         }}
       {{/if}}
@@ -60,14 +64,18 @@
 {{else}}
 
   {{! Default/Desktop Version }}
-  {{#each navItems as |navItem|}}
-    {{navigation-item content=navItem filterMode=filterMode category=category}}
+  {{#each this.navItems as |navItem|}}
+    {{navigation-item
+      content=navItem
+      filterMode=this.filterMode
+      category=this.category
+    }}
   {{/each}}
   {{custom-html name="extraNavItem" tagName="li"}}
   {{! this is done to avoid DIV in the UL, originally {{plugin-outlet name="extra-nav-item"}}
   {{plugin-outlet
     name="extra-nav-item"
     connectorTagName="li"
-    args=(hash category=category filterMode=filterMode)
+    args=(hash category=this.category filterMode=this.filterMode)
   }}
 {{/if}}
