@@ -2,9 +2,5 @@
   "name": "Compact Nav",
   "about_url": "https://meta.discourse.org/t/compact-nav/172034",
   "license_url": null,
-  "component": true,
-  "assets": {
-  },
-  "color_schemes": {
-  }
+  "component": true
 }
