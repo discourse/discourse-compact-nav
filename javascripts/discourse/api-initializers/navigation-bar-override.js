@@ -37,9 +37,12 @@ export default {
       api.registerValueTransformer("navigation-bar-dropdown-mode", () => {
         return showDropdownNavMode(mobileView, router);
       });
-      api.registerValueTransformer("navigation-bar-dropdown-icon", () => {
-        return settings.dropdown_icon;
-      });
+
+      if (!mobileView) {
+        api.registerValueTransformer("navigation-bar-dropdown-icon", () => {
+          return settings.dropdown_icon;
+        });
+      }
     });
   },
 };
