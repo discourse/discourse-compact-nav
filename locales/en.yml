@@ -1,0 +1,9 @@
+en:
+  theme_metadata:
+    settings:
+      everywhere: Show compact nav all the time (overrides home_page/tag_pages/category_pages settings)
+      on_home_page: Show compact nav on the homepage
+      on_tags_pages: Show compact nav on tag pages
+      on_category_pages: Show compact nav on individual category pages and /categories
+      rotate_icon_on_open: Rotate the dropdown icon this many degrees when the dropdown is open
+  
