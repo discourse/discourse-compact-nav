@@ -35,7 +35,6 @@ export default {
       const mobileView = api.container.lookup("service:site").mobileView;
       const router = api.container.lookup("service:router");
       api.registerValueTransformer("navigation-bar-dropdown-mode", () => {
-        console.log(showDropdownNavMode(mobileView, router));
         return showDropdownNavMode(mobileView, router);
       });
       api.registerValueTransformer("navigation-bar-dropdown-icon", () => {
