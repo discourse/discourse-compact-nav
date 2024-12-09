@@ -1,7 +1,8 @@
-.desktop-view {   // mobile is already styled in core
+.desktop-view {
+  // mobile is already styled in core
   .list-control-toggle-link-trigger {
     border: 1px solid var(--primary-medium);
-    gap: .5em;
+    gap: 0.5em;
     color: var(--primary-high);
 
     &:hover,
@@ -14,12 +15,12 @@
     }
 
     &:focus,
-    &.-expanded { 
+    &.-expanded {
       border-color: var(--tertiary);
       outline: 2px solid var(--tertiary);
       outline-offset: -2px;
     }
-  
+
     &.-expanded {
       .d-icon {
         transform: rotate(#{$rotate-icon-on-open}deg);
@@ -31,11 +32,10 @@
     .dropdown-menu {
       border: 1px solid var(--primary-low);
 
-      a { 
+      a {
         display: flex;
-        color: var(--primary); 
+        color: var(--primary);
         padding: 0.5em 1em;
-    
 
         &.active {
           background: var(--d-selected);

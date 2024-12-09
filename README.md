@@ -5,4 +5,5 @@ You can choose to display it on the `home` page, `category` pages, as well as `t
 [Preview it on Theme Creator](https://theme-creator.discourse.org/theme/jordan.vidrine/discourse-compact-nav)
 
 ### Example
+
 ![](screenshots/screenshot.jpg)
