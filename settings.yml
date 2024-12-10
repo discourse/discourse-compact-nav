@@ -14,13 +14,9 @@ on_category_pages:
   type: bool
   default: false
   description: "Show minimal nav on category pages"
-nav_items_to_exclude:
-  type: list
-  default: ""
-  description: "A list of nav item names to exclude from the 'compact' nav, and keep in the nav pills list. ATTN: It is whatever is used in the `name` property, not to be confused with the `displayName`."
-open_icon:
-  type: string
-  default: "caret-down"
-closed_icon:
+dropdown_icon:
   type: string
   default: "caret-right"
+rotate_icon_on_open:
+  type: integer
+  default: 90
