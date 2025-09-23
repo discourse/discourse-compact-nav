@@ -3,7 +3,7 @@
 RSpec.describe "Compact Navigation Bar", system: true do
   let!(:theme) { upload_theme_component }
   fab!(:tag) { Fabricate(:tag, name: "bananas") }
-  fab!(:category) { Fabricate(:category) }
+  fab!(:category)
 
   it "shows the dropdown when the everywhere setting is set" do
     theme.update_setting(:everywhere, true)
