@@ -32,17 +32,24 @@ export default {
   name: NAME,
   initialize() {
     withPluginApi("1.37.2", (api) => {
-      const mobileView = api.container.lookup("service:site").mobileView;
-      const router = api.container.lookup("service:router");
       api.registerValueTransformer("navigation-bar-dropdown-mode", () => {
+        const mobileView = api.container.lookup("service:site").mobileView;
+        const router = api.container.lookup("service:router");
+
         return showDropdownNavMode(mobileView, router);
       });
 
-      if (!mobileView) {
-        api.registerValueTransformer("navigation-bar-dropdown-icon", () => {
-          return settings.dropdown_icon;
-        });
-      }
+      api.registerValueTransformer(
+        "navigation-bar-dropdown-icon",
+        ({ value }) => {
+          const desktopView = api.container.lookup("service:site").desktopView;
+          if (desktopView) {
+            return settings.dropdown_icon;
+          } else {
+            return value;
+          }
+        }
+      );
     });
   },
 };

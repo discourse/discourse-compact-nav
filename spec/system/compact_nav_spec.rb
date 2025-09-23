@@ -3,6 +3,7 @@
 RSpec.describe "Compact Navigation Bar", system: true do
   let!(:theme) { upload_theme_component }
   fab!(:tag) { Fabricate(:tag, name: "bananas") }
+  fab!(:category) { Fabricate(:category) }
 
   it "shows the dropdown when the everywhere setting is set" do
     theme.update_setting(:everywhere, true)
@@ -25,7 +26,7 @@ RSpec.describe "Compact Navigation Bar", system: true do
     theme.update_setting(:on_category_pages, true)
     theme.save!
 
-    visit "/c/1"
+    visit "/c/#{category.id}"
 
     expect(page).to have_css(".list-control-toggle-link-trigger")
 
@@ -59,7 +60,7 @@ RSpec.describe "Compact Navigation Bar", system: true do
 
     expect(page).to have_css(".list-control-toggle-link-trigger")
 
-    visit "/c/1"
+    visit "/c/#{category.id}"
 
     expect(page).not_to have_css(".list-control-toggle-link-trigger")
   end
