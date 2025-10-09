@@ -31,7 +31,7 @@ function showDropdownNavMode(isMobile, router) {
 export default {
   name: NAME,
   initialize() {
-    withPluginApi("1.37.2", (api) => {
+    withPluginApi((api) => {
       api.registerValueTransformer("navigation-bar-dropdown-mode", () => {
         const mobileView = api.container.lookup("service:site").mobileView;
         const router = api.container.lookup("service:router");
