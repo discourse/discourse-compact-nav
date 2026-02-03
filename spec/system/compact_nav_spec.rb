@@ -17,7 +17,7 @@ RSpec.describe "Compact Navigation Bar", system: true do
 
     expect(page).to have_css(".list-control-toggle-link-trigger")
 
-    visit "/tag/bananas"
+    visit tag.url
 
     expect(page).to have_css(".list-control-toggle-link-trigger")
   end
@@ -43,7 +43,7 @@ RSpec.describe "Compact Navigation Bar", system: true do
     theme.update_setting(:on_tag_pages, true)
     theme.save!
 
-    visit "/tag/bananas"
+    visit tag.url
 
     expect(page).to have_css(".list-control-toggle-link-trigger")
 
